@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    upload file example.
+    <form id="upload">
+      <input type="file" name="theFile">
+      <input
+        type="button"
+        value="submit"
+        onclick="google.script.run
+          .withSuccessHandler(uploadSuccess)
+          .withFailureHandler(showError)
+          .uploadFile(this.parentNode)"
+      >
+    </form>
+    <p id="file-id" />
+    <input type="button" value="Close" onclick="google.script.host.close()" />
+
+    <script>
+      function uploadSuccess(fileId) {
+        document.getElementById('file-id').innerHTML = fileId;
+      }
+
+      function showError(error) {
+        console.log(error);
+        window.alert('An error has occurred, please try again.');
+      }
+    </script>
+
+  </body>
+</html>
